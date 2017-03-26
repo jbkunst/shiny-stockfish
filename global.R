@@ -1,0 +1,7 @@
+rm(list = ls())
+library(shiny)
+library(shinythemes)
+library(rchess)
+library(stringr)
+library(subprocess)
+library(dplyr)
