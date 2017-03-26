@@ -3,7 +3,7 @@ shinyServer(function(input, output, session) {
   logjs("in session")
 
   chss <- Chess$new()
-  # console <<- ""
+  console <<- ""
   autoInvalidate <- reactiveTimer(2000)
   
   observe({
@@ -29,7 +29,7 @@ shinyServer(function(input, output, session) {
     logjs("out")
     logjs(out)
     
-    # console <<- out
+    console <<- out
     
     process_kill(handle)
     
@@ -54,8 +54,7 @@ shinyServer(function(input, output, session) {
   
   output$console <- renderPrint({
     # autoInvalidate()
-    # console
-    "hola"
+    console
   })
   
 })
