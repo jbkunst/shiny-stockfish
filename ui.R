@@ -1,5 +1,6 @@
 shinyUI(
   fluidPage(
+    useShinyjs(),
     theme = shinytheme("paper"),
     h3("StockfishR vs Stockfisher"),
     fluidRow(

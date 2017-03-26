@@ -19,6 +19,8 @@ shinyServer(function(input, output, session) {
     
     out <- process_read(handle, PIPE_STDOUT, timeout = 2000)
     
+    logjs(out)
+    
     console <<- out
     
     process_kill(handle)
