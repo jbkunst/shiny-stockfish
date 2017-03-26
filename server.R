@@ -21,6 +21,7 @@ shinyServer(function(input, output, session) {
     while(TRUE) {
       message("loop")
       out <- process_read(handle, PIPE_STDOUT, timeout = 1000)
+      console <<- out
       print(last(out))
       if(any(str_detect(out, "bestmove"))) break()
       
@@ -29,7 +30,7 @@ shinyServer(function(input, output, session) {
     logjs("out")
     logjs(out)
     
-    console <<- out
+    
     
     process_kill(handle)
     
