@@ -1,4 +1,6 @@
 shinyServer(function(input, output, session) {
+  
+  logjs("in session")
 
   chss <- Chess$new()
   console <<- ""
