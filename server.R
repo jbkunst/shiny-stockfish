@@ -9,9 +9,12 @@ shinyServer(function(input, output, session) {
   observe({
     autoInvalidate()
     
+    logjs(.Platform$OS.type)
     if(.Platform$OS.type == "unix") {
+      logjs("unix")
       handle <- spawn_process("/usr/games/stockfish")
     } else {
+      logjs("win")
       handle <- spawn_process("stockfish_8_x64.exe")
     }
     
