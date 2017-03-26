@@ -3,34 +3,29 @@ shinyServer(function(input, output, session) {
   logjs("in session")
 
   chss <- Chess$new()
-  console <<- ""
+  # console <<- ""
   autoInvalidate <- reactiveTimer(2000)
   
   observe({
     autoInvalidate()
     
     logjs(.Platform$OS.type)
-    if(.Platform$OS.type == "unix") {
-      logjs("unix")
-      handle <- spawn_process("/usr/games/stockfish")
-    } else {
-      logjs("win")
-      handle <- spawn_process("stockfish_8_x64.exe")
-    }
     
+    handle <- spawn_process(ifelse(.Platform$OS.type == "unix", "/usr/games/stockfish", "stockfish_8_x64.exe"))
     logjs("handle")
     
     process_write(handle, sprintf("position fen %s\n", chss$fen()))
-    process_write(handle, sprintf("position fen %s\n", chss$fen()))
-    process_write(handle, sprintf("go depth %s\n",
-                                  ifelse(chss$turn() == "w", input$depth1, input$depth2)))
+    logjs(process_read(handle, PIPE_STDOUT, timeout = 2000))
+    
+    process_write(handle, sprintf("go depth %s\n", 10))
+    logjs(process_read(handle, PIPE_STDOUT, timeout = 2000))
     
     out <- process_read(handle, PIPE_STDOUT, timeout = 2000)
     
     logjs("out")
     logjs(out)
     
-    console <<- out
+    # console <<- out
     
     process_kill(handle)
     
@@ -54,8 +49,9 @@ shinyServer(function(input, output, session) {
   })
   
   output$console <- renderPrint({
-    autoInvalidate()
-    console
+    # autoInvalidate()
+    # console
+    "hola"
   })
   
 })
