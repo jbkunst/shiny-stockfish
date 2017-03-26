@@ -15,7 +15,7 @@ shinyServer(function(input, output, session) {
     logjs("handle")
     
     process_write(handle, sprintf("position fen %s\n", chss$fen()))
-    logjs(process_read(handle, PIPE_STDOUT, timeout = 8000))
+    logjs(process_read(handle, PIPE_STDOUT, timeout = TIMEOUT_INFINITE))
     
     process_write(handle, sprintf("go depth %s\n", 2))
     out <- process_read(handle, PIPE_STDOUT, timeout = TIMEOUT_INFINITE)
