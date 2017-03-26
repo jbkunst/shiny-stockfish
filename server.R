@@ -30,8 +30,6 @@ shinyServer(function(input, output, session) {
     logjs("out")
     logjs(out)
     
-    
-    
     process_kill(handle)
     
     mv <- str_split(last(out), " ")[[1]][[2]]
