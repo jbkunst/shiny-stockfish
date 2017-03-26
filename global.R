@@ -6,3 +6,5 @@ library(rchess)
 library(stringr)
 library(subprocess)
 library(dplyr)
+
+logjs("global rdy")
