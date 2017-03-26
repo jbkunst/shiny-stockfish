@@ -7,7 +7,11 @@ shinyServer(function(input, output, session) {
   observe({
     autoInvalidate()
     
-    handle <- spawn_process(ifelse(.Platform$OS.type == "unix", "stockfish", "stockfish_8_x64.exe"))
+    if(.Platform$OS.type == "unix") {
+      handle <- spawn_process("/usr/games/stockfish")
+    } else {
+      handle <- spawn_process("stockfish_8_x64.exe")
+    }
     
     process_write(handle, sprintf("position fen %s\n", chss$fen()))
     process_write(handle, sprintf("go depth %s\n",
